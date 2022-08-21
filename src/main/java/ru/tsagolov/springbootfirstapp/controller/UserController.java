@@ -22,7 +22,7 @@ public class UserController {
 
     @RequestMapping(value = "/showAllUsers", method = RequestMethod.GET)
     public String showAllUsers(Model model) {
-        model.addAttribute("users", userService.allUsers());
+        model.addAttribute("users", userService.findAll());
         return "index";
     }
 
@@ -33,13 +33,13 @@ public class UserController {
 
     @RequestMapping(value = "/saveNewUser", method = RequestMethod.POST)
     public String saveNewUsers(@ModelAttribute ("user") User user) {
-        userService.add(user);
+        userService.save(user);
         return "redirect:/showAllUsers";
     }
 
     @RequestMapping(value ="/toEditUser", method = RequestMethod.POST)
     public String toEdit(Model model,Long id) {
-        User user = userService.findUserById(id);
+        User user = userService.findById(id);
         model.addAttribute("user", user);
         return "edit-user-data";
     }
@@ -50,7 +50,7 @@ public class UserController {
         return "redirect:/showAllUsers";
     }
 
-    @RequestMapping(value ="/deleteUser", method = RequestMethod.POST)
+    @RequestMapping(value ="/deleteUser", method = RequestMethod.PATCH)
     public String delete(Long id) {
         userService.delete(id);
         return "redirect:/showAllUsers";
