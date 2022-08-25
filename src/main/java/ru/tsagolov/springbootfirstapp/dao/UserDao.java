@@ -5,12 +5,12 @@ import ru.tsagolov.springbootfirstapp.model.User;
 import java.util.List;
 
 public interface UserDao {
-    void save(User user);
+    void saveUser(User user);
 
-    List<User> findAll();
+    List<User> getAllUsers();
 
-    User findById(long id);
+    User getUserById(long id);
 
-    void edit(User user);
-    void delete (long id);
+    void editUser (User user);
+    void deleteUserById (long id);
 }

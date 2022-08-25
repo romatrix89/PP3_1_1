@@ -9,7 +9,7 @@
 <body background-color=#2d4d67>
 <h1>Редактирование данных пользователя</h1>
 <br>
-<form th:action="@{/editUser}" th:object="${user}"  method="post">
+<form th:action="@{/editUser}" th:object="${user}"  th:method="patch">
     <div class="block-user-info">
     <input type="hidden" name="id" th:value="*{id}" />
     <div>

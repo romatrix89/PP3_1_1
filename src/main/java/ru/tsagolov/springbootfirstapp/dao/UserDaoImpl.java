@@ -13,31 +13,31 @@ public class UserDaoImpl implements UserDao {
     private EntityManager em;
 
     @Override
-    public void save(User user) {
+    public void saveUser(User user) {
         em.persist(user);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<User> findAll() {
+    public List<User> getAllUsers() {
         return em.createNativeQuery("SELECT t.* FROM spring_hiber.users t", User.class).getResultList();
     }
 
     @Override
-    public User findById(long id) {
+    public User getUserById(long id) {
         return em.find(User.class, id);
     }
 
     @Override
-    public void edit(User user) {
-        User userToBeEdit = findById(user.getId());
+    public void editUser(User user) {
+        User userToBeEdit = getUserById(user.getId());
         userToBeEdit.setFirstName(user.getFirstName());
         userToBeEdit.setLastName(user.getLastName());
         userToBeEdit.setEmail(user.getEmail());
     }
 
-    public void delete(long id) {
-        User userToBeDelete = findById(id);
+    public void deleteUserById(long id) {
+        User userToBeDelete = getUserById(id);
         if (userToBeDelete != null) {
             em.remove(userToBeDelete);
         }
